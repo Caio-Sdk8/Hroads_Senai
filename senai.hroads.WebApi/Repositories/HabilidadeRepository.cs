@@ -1,4 +1,5 @@
-﻿using senai.hroads.WebApi.Domains;
+﻿using senai.hroads.WebApi.Contexts;
+using senai.hroads.WebApi.Domains;
 using senai.hroads.WebApi.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,23 @@ namespace senai.hroads.WebApi.Repositories
 {
     public class HabilidadeRepository : IHabilidadeRepository
     {
-        public void Atualizar(int idHabillidade, Habilidade habilidadeAtualizada)
+        HroadsContext ctx = new HroadsContext();
+        public void Atualizar(int idHabilidade, Habilidade habilidadeAtualizada)
         {
-            throw new NotImplementedException();
+            Habilidade HabilidadeBuscada = BuscarPorId(idHabilidade);
+
+            if (habilidadeAtualizada.NomeHab != null)
+            {
+                HabilidadeBuscada.NomeHab = habilidadeAtualizada.NomeHab;
+            }
+            if (habilidadeAtualizada.IdTipoHab != null)
+            {
+                HabilidadeBuscada.IdTipoHab = habilidadeAtualizada.IdTipoHab;
+            }
+
+            ctx.Habilidades.Update(HabilidadeBuscada);
+
+            ctx.SaveChanges();
         }
 
         public Habilidade BuscarPorId(int idHabilidade)

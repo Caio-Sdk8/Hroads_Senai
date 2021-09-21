@@ -1,4 +1,5 @@
-﻿using senai.hroads.WebApi.Domains;
+﻿using senai.hroads.WebApi.Contexts;
+using senai.hroads.WebApi.Domains;
 using senai.hroads.WebApi.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,29 +10,46 @@ namespace senai.hroads.WebApi.Repositories
 {
     public class ClasseRepository : IClasseRepository
     {
+        HroadsContext ctx = new HroadsContext();
+
         public void Atualizar(int idClasse, Classe classeAtualizada)
         {
-            throw new NotImplementedException();
+            Classe classeBuscada = BuscarPorId(idClasse);
+
+            if (classeAtualizada.NomeClasse != null)
+            {
+                classeBuscada.NomeClasse = classeAtualizada.NomeClasse;
+            }
+
+            ctx.Classes.Update(classeBuscada);
+
+            ctx.SaveChanges();
         }
 
         public Classe BuscarPorId(int idClasse)
         {
-            throw new NotImplementedException();
+            return ctx.Classes.FirstOrDefault(cb => cb.IdClasse == idClasse);
         }
 
         public void Cadastrar(Classe classe)
         {
-            throw new NotImplementedException();
+            ctx.Classes.Add(classe);
+
+            ctx.SaveChanges();
         }
 
         public void Deletar(int idClasse)
         {
-            throw new NotImplementedException();
+            Classe classeBuscada = BuscarPorId(idClasse);
+
+            ctx.Classes.Add(classeBuscada);
+
+            ctx.SaveChanges();
         }
 
         public List<Classe> Listar()
         {
-            throw new NotImplementedException();
+            return ctx.Classes.ToList();
         }
     }
 }
