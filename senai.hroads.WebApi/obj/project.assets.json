@@ -7363,11 +7363,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fic\\Desktop\\Hroads_Senai\\senai.hroads.WebApi\\senai.hroads.WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\fic\\Desktop\\Caio_2DM\\Hroads_Senai\\senai.hroads.WebApi\\senai.hroads.WebApi.csproj",
       "projectName": "senai.hroads.WebApi",
-      "projectPath": "C:\\Users\\fic\\Desktop\\Hroads_Senai\\senai.hroads.WebApi\\senai.hroads.WebApi.csproj",
+      "projectPath": "C:\\Users\\fic\\Desktop\\Caio_2DM\\Hroads_Senai\\senai.hroads.WebApi\\senai.hroads.WebApi.csproj",
       "packagesPath": "C:\\Users\\fic\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fic\\Desktop\\Hroads_Senai\\senai.hroads.WebApi\\obj\\",
+      "outputPath": "C:\\Users\\fic\\Desktop\\Caio_2DM\\Hroads_Senai\\senai.hroads.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fic\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,4 +1,5 @@
-﻿using senai.hroads.WebApi.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using senai.hroads.WebApi.Contexts;
 using senai.hroads.WebApi.Domains;
 using senai.hroads.WebApi.Interfaces;
 using System;
@@ -31,22 +32,35 @@ namespace senai.hroads.WebApi.Repositories
 
         public Habilidade BuscarPorId(int idHabilidade)
         {
-            throw new NotImplementedException();
+            return ctx.Habilidades.FirstOrDefault(cb => cb.IdHabilidade == idHabilidade);
         }
 
         public void Cadastrar(Habilidade habilidade)
         {
-            throw new NotImplementedException();
+            ctx.Habilidades.Add(habilidade);
+
+            ctx.SaveChanges();
         }
 
         public void Deletar(int idHabilidade)
         {
-            throw new NotImplementedException();
+            Habilidade habilidadeBuscada = BuscarPorId(idHabilidade);
+
+            ctx.Habilidades.Add(habilidadeBuscada);
+
+            ctx.SaveChanges();
         }
 
         public List<Habilidade> Listar()
         {
-            throw new NotImplementedException();
+            return ctx.Habilidades.Select(x => new Habilidade
+            {
+                IdTipoHab = x.IdTipoHab,
+                IdTipoHabNavigation = new TipoHabilidade
+                {
+                    NomeTipoHab = x.IdTipoHabNavigation.NomeTipoHab
+                }
+            }).Include(x => x.IdTipoHabNavigation).ToList();
         }
     }
 }
