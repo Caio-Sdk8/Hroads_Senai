@@ -1,4 +1,5 @@
-﻿using senai.hroads.WebApi.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using senai.hroads.WebApi.Contexts;
 using senai.hroads.WebApi.Domains;
 using senai.hroads.WebApi.Interfaces;
 using System;
@@ -59,7 +60,20 @@ namespace senai.hroads.WebApi.Repositories
 
         public List<Personagem> Listar()
         {
-            throw new NotImplementedException();
+            return ctx.Personagems.Select(x => new Personagem
+            {
+                IdPersonagem = x.IdPersonagem,
+                Nome = x.Nome,
+                CapMana = x.CapMana,
+                CapVida = x.CapVida,
+                DataCriacao = x.DataCriacao,
+                DataAtt = x.DataAtt,
+                IdClasse = x.IdClasse,
+                IdClasseNavigation = new Classe
+                {
+                    NomeClasse = x.IdClasseNavigation.NomeClasse
+                }
+            }).Include(x => x.IdClasseNavigation).ToList();
         }
     }
 }
